@@ -1,0 +1,8 @@
+{
+    "prefix": "{darkred}[CS2]{default}",
+    "min_number": 1,
+    "max_number": 15,
+    "min_credits": 100,
+    "max_credits": 300,
+    "chance_to_start": 25
+}
