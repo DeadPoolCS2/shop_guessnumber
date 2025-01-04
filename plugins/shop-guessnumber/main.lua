@@ -1,17 +1,17 @@
 function GetPluginAuthor()
-    return "Karp & rocobalt"
+    return "Karp & rocobalt & DeadPool"
 end
 
 function GetPluginVersion()
-    return "v1.1.0"
+    return "v1.1.1"
 end
 
 function GetPluginName()
-    return "Guess the Number"
+    return "Shop System - Guess the Number"
 end
 
 function GetPluginWebsite()
-    return ""
+    return "https://github.com/DeadPoolCS2/shop_guessnumber/"
 end
 
 local targetNumber = 0
@@ -21,14 +21,14 @@ local gameEnded = true
 local messageSent = {}
 
 -- Preluăm șansa de start a jocului din config sau folosim 25% ca valoare implicită
-local chanceToStartGame = config:Fetch("guessnumber.chance_to_start", 25)
+local chanceToStartGame = config:Fetch("shop.guessnumber.chance_to_start", 25)
 
 local function generateRandomNumber()
     -- Obținem valorile min/max din config, dacă nu există, folosim valori implicite
-    local minNumber = config:Fetch("guessnumber.min_number", 1)
-    local maxNumber = config:Fetch("guessnumber.max_number", 15)
-    local minCredits = config:Fetch("guessnumber.min_credits", 100)
-    local maxCredits = config:Fetch("guessnumber.max_credits", 300)
+    local minNumber = config:Fetch("shop.guessnumber.min_number", 1)
+    local maxNumber = config:Fetch("shop.guessnumber.max_number", 15)
+    local minCredits = config:Fetch("shop.guessnumber.min_credits", 100)
+    local maxCredits = config:Fetch("shop.guessnumber.max_credits", 300)
 
     -- Generăm numerele aleatorii pe baza acestor valori
     targetNumber = math.random(minNumber, maxNumber)
@@ -40,7 +40,7 @@ local function handleGuess(playerid, message)
     if guessedNumber then
         if guessedNumber == targetNumber then
             local playerName = GetPlayer(playerid)
-            playermanager:SendMsg(MessageType.Chat, config:Fetch("prefix"), FetchTranslation("win")
+            playermanager:SendMsg(MessageType.Chat, config:Fetch("shop.guessnumber.prefix"), FetchTranslation("win")
                 :gsub("{player}", playerName:CBasePlayerController().PlayerName)
                 :gsub("{number}", targetNumber)
                 :gsub("{credits}", creditReward))
@@ -53,10 +53,10 @@ local function handleGuess(playerid, message)
                 playerTries[playerid] = playerTries[playerid] + 1
                 local remainingTries = 3 - playerTries[playerid]
                 if remainingTries > 0 then
-                    ReplyToCommand(playerid, config:Fetch("prefix"), FetchTranslation("wrong_guess")
+                    ReplyToCommand(playerid, config:Fetch("shop.guessnumber.prefix"), FetchTranslation("wrong_guess")
                         :gsub("{tries}", remainingTries))
                 else
-                    ReplyToCommand(playerid, config:Fetch("prefix"), FetchTranslation("lose"))
+                    ReplyToCommand(playerid, config:Fetch("shop.guessnumber.prefix"), FetchTranslation("lose"))
                 end
             end
         end
@@ -68,9 +68,9 @@ AddEventHandler("OnRoundStart", function()
     if randomChance <= chanceToStartGame then
         if gameEnded then
             generateRandomNumber()
-            playermanager:SendMsg(MessageType.Chat, config:Fetch("prefix"), FetchTranslation("start")
-                :gsub("{min}", config:Fetch("guessnumber.min_number", 1))
-                :gsub("{max}", config:Fetch("guessnumber.max_number", 15))
+            playermanager:SendMsg(MessageType.Chat, config:Fetch("shop.guessnumber.prefix"), FetchTranslation("start")
+                :gsub("{min}", config:Fetch("shop.guessnumber.min_number", 1))
+                :gsub("{max}", config:Fetch("shop.guessnumber.max_number", 15))
                 :gsub("{credits}", creditReward))
             
             for playerid, _ in pairs(playerTries) do
@@ -87,14 +87,14 @@ end)
 AddEventHandler("OnRoundEnd", function()
     if not gameEnded then
         gameEnded = true
-        playermanager:SendMsg(MessageType.Chat, config:Fetch("prefix"), FetchTranslation("round_end")
+        playermanager:SendMsg(MessageType.Chat, config:Fetch("shop.guessnumber.prefix"), FetchTranslation("round_end")
             :gsub("{number}", targetNumber))
     end
 end)
 
 AddEventHandler("OnClientChat", function(event, playerid, text)
     local guessedNumber = tonumber(text)
-    if guessedNumber and guessedNumber >= config:Fetch("guessnumber.min_number", 1) and guessedNumber <= config:Fetch("guessnumber.max_number", 15) then
+    if guessedNumber and guessedNumber >= config:Fetch("shop.guessnumber.min_number", 1) and guessedNumber <= config:Fetch("shop.guessnumber.max_number", 15) then
         if not playerTries[playerid] then
             playerTries[playerid] = 0
         end
