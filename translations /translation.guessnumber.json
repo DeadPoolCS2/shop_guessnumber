@@ -1,19 +1,27 @@
-{
+{ 
+    "delimiter": {
+        "en": "◇─◇──◇─◇ ◇─◇──◇─◇{gold} ✦ {gold}GUESS THE NUMBER{gold} ✦ {default}◇─◇──◇─◇ ◇─◇──◇─◇",
+        "ro": "◇─◇──◇─◇ ◇─◇──◇─◇{gold} ✦ {gold}GHICEȘTE NUMĂRUL{gold} ✦ {default}◇─◇──◇─◇ ◇─◇──◇─◇"
+    },
+    "credits": {
+        "en": "Reward: {green}{credits} credits!",
+        "ro": "Castigatorul primește: {green}{credits} credite!"
+    },
     "start": {
-        "en": "I'm thinking of a number between {min} and {max}. You have 3 tries. Reward: {credits} credits!",
-        "ro": "Mă gândesc la un număr între {min} și {max}. Ai 3 încercări. Recompensă: {credits} credite!"
+        "en": "I'm thinking of a number between {min} and {max}. You have {tries} tries. Reward: {credits} credits!",
+        "ro": "Mă gândesc la un număr între {min} și {max}. Ai {green}{tries} încercări."
     },
     "win": {
         "en": "{player} guessed the number {number} and won {credits} credits!",
         "ro": "{player} a ghicit numărul {number} și a câștigat {credits} credite!"
     },
     "wrong_guess": {
-        "en": "Wrong number! You have 3 attempts left.",
-        "ro": "Număr greșit! Mai ai 3 încercări."
+        "en": "Wrong number! You have {tries} attempts left.",
+        "ro": "Număr greșit! Mai ai {tries} încercări."
     },
     "lose": {
         "en": "You lost! Try again next time.",
-        "ro": "Ai pierdut! Încearcă data viitoare."
+        "ro": "Ai pierdut! {green}Încearcă data viitoare."
     },
     "round_end": {
         "en": "No one guessed the number. The round has ended. The number was: {number}.",
