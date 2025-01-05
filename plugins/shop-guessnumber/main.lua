@@ -3,7 +3,7 @@ function GetPluginAuthor()
 end
 
 function GetPluginVersion()
-    return "v1.1.1"
+    return "v1.1.2"
 end
 
 function GetPluginName()
@@ -11,7 +11,7 @@ function GetPluginName()
 end
 
 function GetPluginWebsite()
-    return "https://github.com/DeadPoolCS2/shop_guessnumber/"
+    return ""
 end
 
 local targetNumber = 0
@@ -40,10 +40,7 @@ local function handleGuess(playerid, message)
     if guessedNumber then
         if guessedNumber == targetNumber then
             local playerName = GetPlayer(playerid)
-            playermanager:SendMsg(MessageType.Chat, config:Fetch("shop.guessnumber.prefix"), FetchTranslation("win")
-                :gsub("{player}", playerName:CBasePlayerController().PlayerName)
-                :gsub("{number}", targetNumber)
-                :gsub("{credits}", creditReward))
+            playermanager:SendMsg(MessageType.Chat, config:Fetch("shop.guessnumber.prefix") .. " " .. FetchTranslation("guessnumber.win"):gsub("{player}", playerName:CBasePlayerController().PlayerName):gsub("{number}", targetNumber):gsub("{credits}", creditReward))
             
             exports["shop-core"]:GiveCredits(playerid, creditReward)
             gameEnded = true
@@ -53,10 +50,9 @@ local function handleGuess(playerid, message)
                 playerTries[playerid] = playerTries[playerid] + 1
                 local remainingTries = 3 - playerTries[playerid]
                 if remainingTries > 0 then
-                    ReplyToCommand(playerid, config:Fetch("shop.guessnumber.prefix"), FetchTranslation("wrong_guess")
-                        :gsub("{tries}", remainingTries))
+                    ReplyToCommand(playerid, config:Fetch("shop.guessnumber.prefix"), FetchTranslation("guessnumber.wrong_guess"):gsub("{tries}", remainingTries))
                 else
-                    ReplyToCommand(playerid, config:Fetch("shop.guessnumber.prefix"), FetchTranslation("lose"))
+                    ReplyToCommand(playerid, config:Fetch("shop.guessnumber.prefix"), FetchTranslation("guessnumber.lose"))
                 end
             end
         end
@@ -67,12 +63,11 @@ AddEventHandler("OnRoundStart", function()
     local randomChance = math.random(0, 100)
     if randomChance <= chanceToStartGame then
         if gameEnded then
-            generateRandomNumber()
-            playermanager:SendMsg(MessageType.Chat, config:Fetch("shop.guessnumber.prefix"), FetchTranslation("start")
-                :gsub("{min}", config:Fetch("shop.guessnumber.min_number", 1))
-                :gsub("{max}", config:Fetch("shop.guessnumber.max_number", 15))
-                :gsub("{credits}", creditReward))
-            
+            generateRandomNumber()   
+            playermanager:SendMsg(MessageType.Chat, FetchTranslation("guessnumber.delimiter"))
+            playermanager:SendMsg(MessageType.Chat, config:Fetch("shop.guessnumber.prefix") .. " " .. FetchTranslation("guessnumber.start"):gsub("{min}", config:Fetch("shop.guessnumber.min_number", 1)):gsub("{max}", config:Fetch("shop.guessnumber.max_number", 15)))        
+            playermanager:SendMsg(MessageType.Chat, config:Fetch("shop.guessnumber.prefix") .. " " .. FetchTranslation("guessnumber.credits"):gsub("{credits}", creditReward))
+            playermanager:SendMsg(MessageType.Chat, FetchTranslation("guessnumber.delimiter"))
             for playerid, _ in pairs(playerTries) do
                 playerTries[playerid] = 0
             end
@@ -87,8 +82,7 @@ end)
 AddEventHandler("OnRoundEnd", function()
     if not gameEnded then
         gameEnded = true
-        playermanager:SendMsg(MessageType.Chat, config:Fetch("shop.guessnumber.prefix"), FetchTranslation("round_end")
-            :gsub("{number}", targetNumber))
+        playermanager:SendMsg(MessageType.Chat, config:Fetch("shop.guessnumber.prefix") .. " " .. FetchTranslation("guessnumber.round_end"):gsub("{number}", targetNumber))
     end
 end)
 
