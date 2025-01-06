@@ -25,10 +25,10 @@ local chanceToStartGame = config:Fetch("shop.guessnumber.chance_to_start", 25)
 
 local function generateRandomNumber()
     -- Obținem valorile min/max din config, dacă nu există, folosim valori implicite
-    local minNumber = config:Fetch("shop.guessnumber.min_number", 1)
-    local maxNumber = config:Fetch("shop.guessnumber.max_number", 15)
-    local minCredits = config:Fetch("shop.guessnumber.min_credits", 100)
-    local maxCredits = config:Fetch("shop.guessnumber.max_credits", 300)
+    local minNumber = config:Fetch("shop.guessnumber.min_number") or 1
+    local maxNumber = config:Fetch("shop.guessnumber.max_number") or 15
+    local minCredits = config:Fetch("shop.guessnumber.min_credits") or 100
+    local maxCredits = config:Fetch("shop.guessnumber.max_credits") or 300
 
     -- Generăm numerele aleatorii pe baza acestor valori
     targetNumber = math.random(minNumber, maxNumber)
