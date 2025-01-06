@@ -8,8 +8,8 @@
         "ro": "Castigatorul primește: {green}{credits} credite!"
     },
     "start": {
-        "en": "I'm thinking of a number between {min} and {max}. You have {tries} tries. Reward: {credits} credits!",
-        "ro": "Mă gândesc la un număr între {min} și {max}. Ai {green}{tries} încercări."
+        "en": "I'm thinking of a number between {min} and {max}. You have 3 tries. Reward: {credits} credits!",
+        "ro": "Mă gândesc la un număr între {min} și {max}. Ai {green}3 încercări."
     },
     "win": {
         "en": "{player} guessed the number {number} and won {credits} credits!",
