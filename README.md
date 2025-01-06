@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/DeadPoolCS2/shop-guessnumber">
+  <a href="https://github.com/DeadPoolCS2/shop_guessnumber">
     <img src="https://cdn.swiftlycs2.net/swiftly-logo.png" alt="SwiftlyLogo" width="80" height="80">
   </a>
 
@@ -12,10 +12,10 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/downloads/DeadPoolCS2/shop-guessnumber/total" alt="Downloads"> 
-  <img src="https://img.shields.io/github/contributors/DeadPoolCS2/shop-guessnumber?color=dark-green" alt="Contributors">
-  <img src="https://img.shields.io/github/issues/DeadPoolCS2/shop-guessnumber" alt="Issues">
-  <img src="https://img.shields.io/github/license/DeadPoolCS2/shop-guessnumber" alt="License">
+  <img src="https://img.shields.io/github/downloads/DeadPoolCS2/shop_guessnumber/total" alt="Downloads"> 
+  <img src="https://img.shields.io/github/contributors/DeadPoolCS2/shop_guessnumber?color=dark-green" alt="Contributors">
+  <img src="https://img.shields.io/github/issues/DeadPoolCS2/shop_guessnumber" alt="Issues">
+  <img src="https://img.shields.io/github/license/DeadPoolCS2/shop_guessnumber" alt="License">
 </p>
 
 ---
